@@ -51,7 +51,7 @@ In order to use the custom metadata attribute you will need to add the following
 
 ***
 
-**Custom Object Mappers***
+**Custom Object Mappers**
 
 By default Mapper will use a case insensitive object mapper that attepts to match variables and properties by name. If your object needs custom behavior in order to map across, then you can implmement your own `IObjectMapper`.
 
