@@ -53,7 +53,7 @@ In order to use the custom metadata attribute you will need to add the following
 
 **Custom Object Mappers**
 
-By default Mapper will use a case insensitive object mapper that attepts to match variables and properties by name. If your object needs custom behavior in order to map across, then you can implmement your own `IObjectMapper`.
+By default Mapper will use a case-insensitive object mapper that attepts to match variables and properties by name. If your object needs custom behavior in order to map across, then you can implement your own `IObjectMapper`.
 
 ``` actionscript
 factory.inScope(MyType).register(MyTypeMapper).asType(IObjectMapper);
@@ -63,23 +63,21 @@ factory.inScope(MyType).register(MyTypeMapper).asType(IObjectMapper);
 
 **IoC Container**
 
-The IoC container is used for binding object together at runtime. In addition to being the platform for registering Commands and Queries, it will also resolve the dependencies used by the Handlers.
+The IoC container is used for binding object together at runtime. The IoC container is the platform for registering custom object mappers.
 
 ``` actionscript
 var factory:FluentAsFactory = new FluentAsFactory();
-factory.register(InMemoryUserRepository).asType(IUserRepository).asSingleton();
 
-factory.inScope(GetUserQuery).register(GetUserHandler).asType(IQueryHandler);
-var handler:IQueryHandler = factory.fromScope(GetUserQuery).resolve(IQueryHandler);
+factory.inScope(MyType).register(MyTypeMapper).asType(IObjectMapper);
+var myMapper:IObjectMapper = factory.fromScope(MyType).resolve(IObjectMapper);
 
-// The handler variable is an instance of GetUserHandler which required an IUserRepository in its constructor.
-// The IoC container passed an singleton instance of the InMemoryUserRepository into the GetUserHandler constructor to fulfill this dependency.
+// The myMapper variable is an instance of MyTypeMapper.
 ```
 
-Asbus uses [asfac](https://github.com/thedevstop/asfac/ "asfac") for it's IoC container.
+Asmap uses [asfac](https://github.com/thedevstop/asfac/ "asfac") for it's IoC container.
 
 ***
 
 **License**
 
-This content is released under the MIT License (See LICENSE.txt).
+This content is released under the MIT License (See LICENSE).
