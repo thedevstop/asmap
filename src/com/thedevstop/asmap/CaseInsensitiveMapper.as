@@ -29,8 +29,8 @@ package com.thedevstop.asmap
 					continue;
 				
 				var value:Object = source[keys[index]];
-				if (member.type != Object && Object(value).constructor != member.type)
-					value = _mapper.map(value, member.type);
+				if (member.itemType != Object && Object(value).constructor != member.itemType)
+					value = _mapper.map(value, member.itemType);
 				
 				if (value is Array && member.containerType == MemberInfo.ARRAY_COLLECTION)
 					value = new ArrayCollection(value as Array);

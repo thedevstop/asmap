@@ -13,6 +13,7 @@
 			import com.thedevstop.asmap.Mapper;
 			import com.thedevstop.asmap.ReflectionUtil;
 			import com.thedevstop.asmap.TypeInfo;
+			import com.thedevstop.User;
 			
 			private function onCreationComplete():void
 			{
@@ -20,8 +21,10 @@
 				factory.register(Mapper).asType(IMapper);
 				factory.register(CaseInsensitiveMapper).asType(IObjectMapper);
 				
+				var userObject:Object = {Name:"Anakin Skywalker", Children:[{name:"Luke Skywalker"}, {name:"Leia Amidala Skywalker"}]};
+				
 				var mapper:IMapper = factory.resolve(IMapper);
-				var test:TestType = mapper.map({ name:"Joey Robichaud", First:"Joey", LAST:"Robichaud", PlaCES:[{NAME:"JEff"}], tImEs:[1,4,5] }, TestType);
+				var user:User = mapper.map(userObject, User);
 			}
 		]]>
 	</fx:Script>
