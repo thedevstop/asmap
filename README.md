@@ -53,11 +53,7 @@ In order to use the custom metadata attribute you will need to add the following
 
 **Custom Object Mappers**
 
-By default Mapper will use a case-insensitive object mapper that attepts to match variables and properties by name. If your object needs custom behavior in order to map across, then you can implement your own `IObjectMapper`.
-
-``` actionscript
-factory.inScope(MyType).register(MyTypeMapper).asType(IObjectMapper);
-```
+By default Mapper will use a case-insensitive object mapper that attepts to match variables and properties by name. If your object needs custom behavior in order to map across, then you can implement your own `IObjectMapper`. Your custom object mapper will need to be registered with the IoC container before it can be used.
 
 ***
 
