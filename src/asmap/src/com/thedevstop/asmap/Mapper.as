@@ -10,7 +10,6 @@ package com.thedevstop.asmap
 		public function Mapper(factory:FluentAsFactory)
 		{
 			_factory = factory;
-			_factory.register(CaseSensitiveMapper).asType(IObjectMapper);
 		}
 		
 		public function map(instance:*, type:Class):*

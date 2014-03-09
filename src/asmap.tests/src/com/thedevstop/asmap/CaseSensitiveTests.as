@@ -4,9 +4,9 @@ package com.thedevstop.asmap
 	import com.thedevstop.asfac.FluentAsFactory;
 	import com.thedevstop.asmap.stubs.User;
 
-	public class CaseInsensitiveTests extends TestCase
+	public class CaseSensitiveTests extends TestCase
 	{
-		public function CaseInsensitiveTests(testMethod:String = null) 
+		public function CaseSensitiveTests(testMethod:String = null) 
 		{
 			super(testMethod);
 		}
@@ -15,7 +15,7 @@ package com.thedevstop.asmap
 		{
 			var factory:FluentAsFactory = new FluentAsFactory();
 			factory.register(Mapper).asType(IMapper);
-			factory.register(CaseInsensitiveMapper).asType(IObjectMapper);
+			factory.register(CaseSensitiveMapper).asType(IObjectMapper);
 			
 			var mapper:IMapper = factory.resolve(IMapper);
 			var result:User = mapper.map({name:"test", AGE:25, Children:[]}, User);
@@ -25,18 +25,18 @@ package com.thedevstop.asmap
 			assertEqualsArrays([], result.Children);
 		}
 		
-		public function test_map_object_maps_nonmatching_keys():void
+		public function test_map_object_doesnt_maps_nonmatching_keys():void
 		{
 			var factory:FluentAsFactory = new FluentAsFactory();
 			factory.register(Mapper).asType(IMapper);
-			factory.register(CaseInsensitiveMapper).asType(IObjectMapper);
+			factory.register(CaseSensitiveMapper).asType(IObjectMapper);
 			
 			var mapper:IMapper = factory.resolve(IMapper);
 			var result:User = mapper.map({NAME:"test", AGE:25, CHILDREN:[]}, User);
 			
 			assertEquals(25, result.AGE);
-			assertEquals("test", result.name);
-			assertEqualsArrays([], result.Children);
+			assertNull(result.name);
+			assertNull(result.Children);
 		}
 	}
 }

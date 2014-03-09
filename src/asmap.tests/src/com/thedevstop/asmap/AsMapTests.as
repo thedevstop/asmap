@@ -11,6 +11,7 @@ package com.thedevstop.asmap
 			addTest(new SimpleTypeTests());
 			addTest(new ArrayTests());
 			addTest(new ArrayCollectionTests());
+			addTest(new CaseSensitiveTests());
 			addTest(new CaseInsensitiveTests());
 		}
 	}

@@ -1,12 +1,16 @@
 package com.thedevstop.asmap.stubs 
 {
+	import mx.collections.ArrayCollection;
 	public class User 
 	{
 		private var _name:String;
-		public var age:int = 20;
+		public var AGE:int = 20;
 		
-		[Item(type="com.thedevstop.User")]
-		public var children:Array;
+		[Item(type="com.thedevstop.asmap.stubs.User")]
+		public var Children:Array;
+		
+		[Item(type="com.thedevstop.asmap.stubs.User")]
+		public var FriendS:ArrayCollection;
 		
 		public function get name():String
 		{

@@ -14,11 +14,36 @@ package com.thedevstop.asmap
 		{
 			var factory:FluentAsFactory = new FluentAsFactory();
 			factory.register(Mapper).asType(IMapper);
+			factory.register(CaseSensitiveMapper).asType(IObjectMapper);
 			
 			var mapper:IMapper = factory.resolve(IMapper);
 			var result:Object = mapper.map(null, Object);
 			
 			assertNull(result);		
+		}
+		
+		public function test_map_number_to_number_returns_number():void
+		{
+			var factory:FluentAsFactory = new FluentAsFactory();
+			factory.register(Mapper).asType(IMapper);
+			factory.register(CaseSensitiveMapper).asType(IObjectMapper);
+			
+			var mapper:IMapper = factory.resolve(IMapper);
+			var result:Object = mapper.map(-7.25, Number);
+			
+			assertEquals(-7.25, result);		
+		}
+		
+		public function test_map_string_to_string_returns_string():void
+		{
+			var factory:FluentAsFactory = new FluentAsFactory();
+			factory.register(Mapper).asType(IMapper);
+			factory.register(CaseSensitiveMapper).asType(IObjectMapper);
+			
+			var mapper:IMapper = factory.resolve(IMapper);
+			var result:Object = mapper.map("test", String);
+			
+			assertEquals("test", result);		
 		}
 	}
 }
