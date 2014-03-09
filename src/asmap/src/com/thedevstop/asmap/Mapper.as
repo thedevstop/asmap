@@ -10,14 +10,14 @@ package com.thedevstop.asmap
 		
 		public function Mapper(factory:FluentAsFactory)
 		{
-			Contract.requireNotNull(factory);
+			Contract.require.isNotNull(factory);
 			
 			_factory = factory;
 		}
 		
 		public function map(instance:*, type:Class):*
 		{
-			Contract.requireNotNull(type);
+			Contract.require.isNotNull(type);
 			
 			if (instance === null || instance === undefined)
 				return instance;
@@ -30,7 +30,7 @@ package com.thedevstop.asmap
 			else
 				value = mapObject(instance, type);
 			
-			Contract.ensureNotNull(value);
+			Contract.ensure.isNotNull(value);
 			
 			return value;
 		}

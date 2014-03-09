@@ -9,16 +9,16 @@ package com.thedevstop.asmap
 		
 		public function CaseSensitiveMapper(mapper:IMapper)
 		{
-			Contract.requireNotNull(mapper);
+			Contract.require.isNotNull(mapper);
 			
 			_mapper = mapper;
 		}
 		
 		public function map(source:Object, target:Object, typeInfo:TypeInfo):*
 		{
-			Contract.requireNotNull(source);
-			Contract.requireNotNull(target);
-			Contract.requireNotNull(typeInfo);
+			Contract.require.isNotNull(source);
+			Contract.require.isNotNull(target);
+			Contract.require.isNotNull(typeInfo);
 			
 			var values:Object = {};
 			for (var key:String in source)

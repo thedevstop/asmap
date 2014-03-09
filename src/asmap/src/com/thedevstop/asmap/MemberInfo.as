@@ -13,9 +13,9 @@ package com.thedevstop.asmap
 		
 		public function MemberInfo(name:String, itemType:Class, containerType:String) 
 		{
-			Contract.requireNotNull(name);
-			Contract.requireNotNull(itemType);
-			Contract.requireNotNull(containerType);
+			Contract.require.isNotNull(name);
+			Contract.require.isNotNull(itemType);
+			Contract.require.isNotNull(containerType);
 			
 			_name = name;
 			_itemType = itemType;

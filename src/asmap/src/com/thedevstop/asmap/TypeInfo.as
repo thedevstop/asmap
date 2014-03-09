@@ -8,8 +8,8 @@ package com.thedevstop.asmap
 		
 		public function TypeInfo(className:String, members:Array) 
 		{
-			Contract.requireNotNull(className);
-			Contract.requireNotNull(members);
+			Contract.require.isNotNull(className);
+			Contract.require.isNotNull(members);
 			
 			_className = className;
 			_members = members;
