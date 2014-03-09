@@ -1,5 +1,6 @@
 package com.thedevstop.asmap 
 {
+	import com.thedevstop.contracts.Contract;
 	public class MemberInfo 
 	{
 		public static const OBJECT:String = "object";
@@ -12,6 +13,10 @@ package com.thedevstop.asmap
 		
 		public function MemberInfo(name:String, itemType:Class, containerType:String) 
 		{
+			Contract.requireNotNull(name);
+			Contract.requireNotNull(itemType);
+			Contract.requireNotNull(containerType);
+			
 			_name = name;
 			_itemType = itemType;
 			_containerType = containerType;

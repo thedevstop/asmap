@@ -1,5 +1,6 @@
 package com.thedevstop.asmap
 {
+	import com.thedevstop.contracts.Contract;
 	import flash.utils.describeType;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
@@ -11,14 +12,22 @@ package com.thedevstop.asmap
 		
 		public static function getTypeInfo(type:Class):TypeInfo
 		{
+			Contract.requireNotNull(type);
+			
 			if (!_typeCache[type])
 				_typeCache[type] = generateTypeInfo(type);
 			
-			return _typeCache[type];
+			var typeInfo:TypeInfo = _typeCache[type];
+			
+			Contract.ensureNotNull(typeInfo);
+			
+			return typeInfo;
 		}
 		
 		private static function generateTypeInfo(type:Class):TypeInfo
 		{
+			Contract.requireNotNull(type);
+			
 			var members:Array = [];
 			var description:XML = describeType(type);
 			
@@ -38,6 +47,8 @@ package com.thedevstop.asmap
 		
 		private static function getMemberInfo(member:XML):MemberInfo
 		{
+			Contract.requireNotNull(member);
+			
 			var cotainerType:String = MemberInfo.OBJECT;
 			var itemType:Class = Class(getDefinitionByName(member.@type.toString()));
 			
@@ -52,6 +63,8 @@ package com.thedevstop.asmap
 		
 		private static function getItemType(member:XML):Class
 		{
+			Contract.requireNotNull(member);
+			
 			for each (var metadata:XML in member.metadata)
 			{
 				if (metadata.@name.toString() != "Item")

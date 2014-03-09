@@ -1,6 +1,7 @@
 package com.thedevstop.asmap 
 {
 	import com.thedevstop.asfac.FluentAsFactory;
+	import com.thedevstop.contracts.Contract;
 	import mx.collections.ArrayCollection;
 
 	public class Mapper implements IMapper
@@ -9,19 +10,29 @@ package com.thedevstop.asmap
 		
 		public function Mapper(factory:FluentAsFactory)
 		{
+			Contract.requireNotNull(factory);
+			
 			_factory = factory;
 		}
 		
 		public function map(instance:*, type:Class):*
 		{
+			Contract.requireNotNull(type);
+			
 			if (instance === null || instance === undefined)
 				return instance;
 			
+			var value:Object = null;
 			if (instance is Array)
-				return mapArray(instance, type);
-			if (instance is ArrayCollection)
-				return mapArrayCollection(instance, type);
-			return mapObject(instance, type);
+				value = mapArray(instance, type);
+			else if (instance is ArrayCollection)
+				value = mapArrayCollection(instance, type);
+			else
+				value = mapObject(instance, type);
+			
+			Contract.ensureNotNull(value);
+			
+			return value;
 		}
 		
 		private function mapArray(instance:Array, type:Class):Array

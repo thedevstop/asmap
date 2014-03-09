@@ -1,5 +1,6 @@
 package com.thedevstop.asmap 
 {
+	import com.thedevstop.contracts.Contract;
 	import mx.collections.ArrayCollection;
 
 	public class CaseSensitiveMapper implements IObjectMapper
@@ -8,11 +9,17 @@ package com.thedevstop.asmap
 		
 		public function CaseSensitiveMapper(mapper:IMapper)
 		{
+			Contract.requireNotNull(mapper);
+			
 			_mapper = mapper;
 		}
 		
 		public function map(source:Object, target:Object, typeInfo:TypeInfo):*
 		{
+			Contract.requireNotNull(source);
+			Contract.requireNotNull(target);
+			Contract.requireNotNull(typeInfo);
+			
 			var values:Object = {};
 			for (var key:String in source)
 				values[key] = source[key];

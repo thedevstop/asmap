@@ -1,5 +1,6 @@
 package com.thedevstop.asmap 
 {
+	import com.thedevstop.contracts.Contract;
 	public class TypeInfo 
 	{
 		private var _className:String;
@@ -7,6 +8,9 @@ package com.thedevstop.asmap
 		
 		public function TypeInfo(className:String, members:Array) 
 		{
+			Contract.requireNotNull(className);
+			Contract.requireNotNull(members);
+			
 			_className = className;
 			_members = members;
 		}
