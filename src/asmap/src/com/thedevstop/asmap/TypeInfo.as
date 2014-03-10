@@ -1,6 +1,7 @@
 package com.thedevstop.asmap 
 {
-	import com.thedevstop.contracts.Contract;
+	import com.thedevstop.asguard.Contract;
+	
 	public class TypeInfo 
 	{
 		private var _className:String;

@@ -1,7 +1,7 @@
-package com.thedevstop.contracts 
+package com.thedevstop.asguard 
 {
-	import com.thedevstop.contracts.ContractViolatedError;
-	import com.thedevstop.contracts.ContractViolatedEvent;
+	import com.thedevstop.asguard.ContractViolatedError;
+	import com.thedevstop.asguard.ContractViolatedEvent;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	import flash.utils.Dictionary;

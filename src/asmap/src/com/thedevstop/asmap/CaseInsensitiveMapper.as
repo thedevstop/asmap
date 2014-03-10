@@ -1,6 +1,6 @@
 package com.thedevstop.asmap
 {
-	import com.thedevstop.contracts.Contract;
+	import com.thedevstop.asguard.Contract;
 	import mx.collections.ArrayCollection;
 	
 	public class CaseInsensitiveMapper implements IObjectMapper

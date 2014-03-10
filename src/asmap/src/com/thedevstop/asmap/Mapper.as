@@ -1,8 +1,8 @@
 package com.thedevstop.asmap 
 {
 	import com.thedevstop.asfac.FluentAsFactory;
-	import com.thedevstop.contracts.Conditions;
-	import com.thedevstop.contracts.Contract;
+	import com.thedevstop.asguard.Conditions;
+	import com.thedevstop.asguard.Contract;
 	import mx.collections.ArrayCollection;
 
 	public class Mapper implements IMapper

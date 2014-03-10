@@ -1,4 +1,4 @@
-package com.thedevstop.contracts
+package com.thedevstop.asguard
 {
 	/**
 	 * Build up a set validations that can be run all at once.

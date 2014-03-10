@@ -1,4 +1,4 @@
-package com.thedevstop.contracts 
+package com.thedevstop.asguard 
 {
 	/**
 	 * Thrown when a contract is violated in Debug builds.

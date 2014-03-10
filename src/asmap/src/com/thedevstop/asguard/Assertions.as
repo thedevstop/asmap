@@ -1,4 +1,4 @@
-package com.thedevstop.contracts 
+package com.thedevstop.asguard 
 {
 	import flash.events.IEventDispatcher;
 	
@@ -30,69 +30,70 @@ package com.thedevstop.contracts
 		/**
 		 * Check for true.
 		 */
-		public function isTrue(condition:Boolean, message:String = null):void
+		public function isTrue(condition:Boolean, message:String = null):Boolean
 		{
 			if (condition)
-				return;
+				return true;
 			
 			message = message || "Expected condition to evaluate to true.";
 			conditionCheckFailed(message);
+			return false;
 		}
 		
 		/**
 		 * Check for false.
 		 */
-		public function isFalse(condition:Boolean, message:String = null):void
+		public function isFalse(condition:Boolean, message:String = null):Boolean
 		{
 			message = message || "Expected condition to evaluate to false.";
-			isTrue(!condition, message);
+			return isTrue(!condition, message);
 		}
 		
 		/**
 		 * Check for equality.
 		 */
-		public function isEqual(expected:Object, actual:Object, message:String = null):void
+		public function isEqual(expected:Object, actual:Object, message:String = null):Boolean
 		{
 			message = message || "Expected value: <" + expected + "> but was: <" + actual + ">.";
-			isTrue((expected == null && actual == null) ||
-				   (expected != null && expected.equals && expected.equals is Function && expected.equals(actual)) ||
+			return isTrue((expected == null && actual == null) ||
+				   (expected != null && expected.hasOwnProperty("equals") && expected.equals && expected.equals is Function && expected.equals(actual)) ||
 				   (expected == actual), message);
 		}
 		
 		/**
 		 * Check for same instance.
 		 */
-		public function isSame(expected:Object, actual:Object, message:String = null):void
+		public function isSame(expected:Object, actual:Object, message:String = null):Boolean
 		{
 			message = message || "Expected same: <" + expected + "> but was: <" + actual + ">.";
-			isTrue(expected === actual, message);
+			return isTrue(expected === actual, message);
 		}
 		
 		/**
 		 * Check for different instances.
 		 */
-		public function isNotSame(expected:Object, actual:Object, message:String = null):void
+		public function isNotSame(expected:Object, actual:Object, message:String = null):Boolean
 		{
 			message = message || "Expected not same.";
-			isTrue(expected !== actual, message);
+			return isTrue(expected !== actual, message);
 		}
 		
 		/**
 		 * Check for null.
 		 */
-		public function isNull(object:Object, message:String = null):void
+		public function isNull(object:Object, message:String = null):Boolean
 		{
 			message = message || "Expected null value.";
-			isTrue(object === null, message);
+			return isTrue(object === null, message);
 		}
 		
 		/**
 		 * Check for value.
 		 */
-		public function isNotNull(object:Object, message:String = null):void
+		public function isNotNull(object:Object, message:String = null):Boolean
 		{
 			message = message || "Expected non-null value.";
-			isTrue(object !== null, message);
+			return isTrue(object !== null, message);
 		}
 		
 		private function conditionCheckFailed(message:String):void
