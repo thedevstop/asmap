@@ -256,15 +256,6 @@ package com.thedevstop.asfac
 				}
 			}
 			
-			for each (var variable:XML in description.factory.variable)
-			{
-				if (hasInjectMetadata(variable))
-				{
-					var variableType:Class = Class(getDefinitionByName(variable.@type.toString()));
-					typeDescription.injectableProperties.push( { name:variable.@name.toString(), type:variableType } ); 
-				}
-			}
-			
 			return typeDescription;
 		}
 		
@@ -274,22 +265,15 @@ package com.thedevstop.asfac
 		 * @return True if the Inject metadata is present, otherwise false.
 		 */
 		private function shouldInjectAccessor(accessor:XML):Boolean
-		{			
-			return (accessor.@access == "readwrite" || accessor.@access == "writeonly") 
-				&& hasInjectMetadata(accessor);
-		}
-		
-		/**
-		 * Determines whether the member should be injected.
-		 * @param	member A variable or accessor node from a class description xml.
-		 * @return True if the Inject metadata is present, otherwise false.
-		 */
-		private function hasInjectMetadata(member:XML):Boolean
 		{				
-			for each (var metadata:XML in member.metadata)
+			if (accessor.@access == "readwrite" ||
+				accessor.@access == "write")
 			{
-				if (metadata.@name.toString() == "Inject")
-					return true;
+				for each (var metadata:XML in accessor.metadata)
+				{
+					if (metadata.@name.toString() == "Inject")
+						return true;
+				}
 			}
 			
 			return false;

@@ -19,7 +19,6 @@ package com.thedevstop.asfac
 			_factory = factory || new AsFactory();
 			_defaultRegistrar = new FluentRegistrar(_factory);
 			_defaultResolver = new FluentResolver(_factory);
-			register(this).asType(FluentAsFactory);
 		}
 		
 		/**
