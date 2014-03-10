@@ -20,6 +20,14 @@ package com.thedevstop.contracts
 		}
 		
 		/**
+		 * Build up a set validations that can be run all at once.
+		 */
+		public function createConditions():Conditions
+		{
+			return new Conditions(this);
+		}
+		
+		/**
 		 * Check for true.
 		 */
 		public function isTrue(condition:Boolean, message:String = null):void

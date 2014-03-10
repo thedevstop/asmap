@@ -1,6 +1,7 @@
 package com.thedevstop.asmap 
 {
 	import com.thedevstop.asfac.FluentAsFactory;
+	import com.thedevstop.contracts.Conditions;
 	import com.thedevstop.contracts.Contract;
 	import mx.collections.ArrayCollection;
 
@@ -18,6 +19,7 @@ package com.thedevstop.asmap
 		public function map(instance:*, type:Class):*
 		{
 			Contract.require.isNotNull(type);
+			var postConditions:Conditions = Contract.ensure.createConditions().isNotNull();
 			
 			if (instance === null || instance === undefined)
 				return instance;
@@ -30,9 +32,7 @@ package com.thedevstop.asmap
 			else
 				value = mapObject(instance, type);
 			
-			Contract.ensure.isNotNull(value);
-			
-			return value;
+			return postConditions.validate(value);
 		}
 		
 		private function mapArray(instance:Array, type:Class):Array

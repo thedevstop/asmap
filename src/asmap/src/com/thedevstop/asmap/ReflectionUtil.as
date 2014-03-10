@@ -1,5 +1,6 @@
 package com.thedevstop.asmap
 {
+	import com.thedevstop.contracts.Conditions;
 	import com.thedevstop.contracts.Contract;
 	import flash.utils.describeType;
 	import flash.utils.Dictionary;
@@ -13,15 +14,14 @@ package com.thedevstop.asmap
 		public static function getTypeInfo(type:Class):TypeInfo
 		{
 			Contract.require.isNotNull(type);
+			var postConditions:Conditions = Contract.ensure.createConditions().isNotNull();
 			
 			if (!_typeCache[type])
 				_typeCache[type] = generateTypeInfo(type);
 			
 			var typeInfo:TypeInfo = _typeCache[type];
 			
-			Contract.ensure.isNotNull(typeInfo);
-			
-			return typeInfo;
+			return postConditions.validate(typeInfo);
 		}
 		
 		private static function generateTypeInfo(type:Class):TypeInfo
